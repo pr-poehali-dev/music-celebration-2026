@@ -90,8 +90,8 @@ export default function Index() {
             onNext={() => goTo(2)}
           />
         )}
-        {slide === 2 && <SlideTwo onNext={() => goTo(3, true)} />}
-        {slide === 3 && <SlideThree onNext={() => goTo(4, true)} />}
+        {slide === 2 && <SlideTwo onNext={() => goTo(3)} />}
+        {slide === 3 && <SlideThree onNext={() => goTo(4)} />}
         {slide === 4 && <SlideFour onNext={() => goTo(5)} />}
         {slide === 5 && <SlideFive />}
       </div>
