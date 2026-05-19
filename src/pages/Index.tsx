@@ -51,10 +51,16 @@ export default function Index() {
 
   const playTrack = (trackNum: Slide) => {
     if (!audioRef.current) return;
-    audioRef.current.pause();
-    audioRef.current.src = TRACKS[trackNum];
-    audioRef.current.volume = 0.65;
-    audioRef.current.play().catch(() => {});
+    const audio = audioRef.current;
+    audio.pause();
+    audio.src = TRACKS[trackNum];
+    audio.load();
+    audio.volume = 0.65;
+    const tryPlay = () => {
+      audio.play().catch(() => {});
+      audio.removeEventListener("canplay", tryPlay);
+    };
+    audio.addEventListener("canplay", tryPlay);
   };
 
   const stopTrack = () => {
